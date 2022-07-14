@@ -1,0 +1,13 @@
+{% for interface in __interface %}
+
+   
+{% if "Loopback" in interface.portName %}
+   
+interface {{interface.portName}} 
+description # This interface is a Loopback Interface. #
+  
+{% endif %}
+   
+   
+
+{% endfor %}

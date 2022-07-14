@@ -1,0 +1,11 @@
+vlan 20
+name test20
+media ethernet
+
+{% for interface_variable in interfaces_list %}
+
+interface {{interface_variable}}
+switchport mode access
+switchport access vlan 20
+
+{% endfor %}

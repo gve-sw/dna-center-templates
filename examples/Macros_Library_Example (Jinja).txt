@@ -1,0 +1,4 @@
+{% import "Sample Jinja Templates/Macros Library" %}
+
+{% set interfaces = ['Vlan1', 'Vlan2', 'Vlan3'] %}
+{{ change_interfaces_description(interfaces) }}

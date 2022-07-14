@@ -1,0 +1,6 @@
+#set($description = 'This is a copper interface')
+
+#foreach($interface in $interfaces)
+  int $interface
+  desc $description
+#end

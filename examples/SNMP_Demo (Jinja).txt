@@ -1,0 +1,5 @@
+{% if __device.managementIpAddress == '10.90.54.218' %}
+no snmp-server host 10.93.141.35 version 2c RO
+no snmp-server host 10.93.141.35 version 2c wr!t3
+{% endif %}
+snmp-server host 10.93.141.35 version 2c Sj64teyrBYqdJQfB

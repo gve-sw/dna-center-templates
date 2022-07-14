@@ -1,0 +1,140 @@
+
+hostname ${Host_Name_C9300x1}
+!
+!
+no service pad
+service timestamps debug datetime msec localtime
+service timestamps log datetime msec localtime
+service password-encryption
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+ !
+ !
+ logging buffered 65536
+ !
+ no platform punt-keepalive disable-kernel-core
+ !
+ cpp system-default
+stack-mac persistent timer 5
+ no ip domain lookup
+ip domain name lan.telecom
+ip admission watch-list expiry-time 0
+!
+!
+! Generate SSH certificate
+ip domain name lan.telecom
+crypto key generate rsa
+2048
+!
+!
+aaa new-model
+
+!
+clock timezone CET 1 0
+clock summer-time CET recurring last Sun Mar 2:00 last Sun Oct 2:00
+!
+ip arp inspection vlan ${data_Vlan}-${Voice_Vlan}-{Voice_Vlan}
+!
+ip dhcp snooping vlan ${data_Vlan}-${Voice_Vlan}
+no ip dhcp snooping information option
+ip dhcp snooping
+!
+vlan ${Mgmt_Vlan}
+name mgmt
+!
+vlan ${data_Vlan}
+name data
+!
+vlan ${Voice_Vlan}
+name voice
+!
+vlan ${data_Vlan}
+name data
+!
+vlan ${AntiHopping_Vlan}
+name AntiHoppingVLAN
+!
+interface Port-channel$Portchannel
+description MEC C9300xVx${Building_Name_Po_name}
+switchport trunk native vlan ${AntiHopping_Vlan}
+switchport trunk allowed ${data_Vlan},${Voice_Vlan},${Mgmt_Vlan},${data_Vlan}
+switchport mode trunk
+logging event trunk-status
+logging event bundle-status
+load-interval 30
+spanning-tree bpduguard disable
+spanning-tree portfast disable
+service-policy output VV-9400-8Q-Output-Policy
+
+!
+interface range $interface_type1 $port_range1
+switchport access vlan ${data_Vlan}
+switchport mode access
+switchport voice vlan ${Voice_Vlan}
+switchport port-security maximum 11
+switchport port-security
+switchport port-security aging time 2
+switchport port-security violation restrict
+switchport port-security aging type inactivity
+ip arp inspection limit rate 100
+load-interval 30
+spanning-tree portfast
+ip verify source
+ip dhcp snooping limit rate 100
+!
+interface range $interface_type1 $port_range1
+description JAIL__
+switchport access vlan ${data_Vlan}
+switchport mode access
+logging event link-status
+power inline never
+no snmp trap link-status
+snmp ifindex persist
+storm-control broadcast level 4.00
+spanning-tree portfast
+switchport port-security
+switchport port-security aging time 2
+switchport port-security violation restrict
+switchport port-security aging type inactivity
+ip arp inspection limit rate 100
+load-interval 30
+spanning-tree portfast
+ip verify source
+ip dhcp snooping limit rate 100
+!
+interface range $interface_type1 $port_range1
+description C9300xVxKADxR00xDIS_SUD
+switchport trunk native ${AntiHopping_Vlan}
+switchport trunk allowed ${data_Vlan},${Voice_Vlan},${Mgmt_Vlan},${data_Vlan}
+switchport mode trunk
+logging event trunk-status
+logging event bundle-status
+load-interval 30
+channel-protocol lacp
+channel-group $Portchannel mode active
+!
+interface range $interface_type1 $port_range1
+description Uplink C9300xVxKADxR00xDIS_SUD
+switchport trunk native ${AntiHopping_Vlan}
+switchport trunk allowed ${data_Vlan},${Voice_Vlan},${Mgmt_Vlan}
+switchport mode trunk
+logging event trunk-status
+logging event bundle-status
+load-interval 30
+channel-protocol lacp
+channel-group $Portchannel mode active
+!
+interface Vlan${Mgmt_Vlan}
+ip address ${Mgmt_IPAdddr} 255.255.255.0
+!
+ip default-gateway ${Default_GW}
+ip http server
+ip http secure-server
+ip http client source-interface Vlan${Mgmt_Vlan}

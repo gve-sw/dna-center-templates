@@ -1,0 +1,63 @@
+!--- Crypto Config ---
+crypto isakmp policy 200
+encr aes
+authentication pre-share
+group 2
+lifetime 28800
+crypto isakmp key cisco address 0.0.0.0
+crypto isakmp keepalive 10 10
+!
+crypto ipsec security-association replay window-size 1024
+!
+crypto ipsec transform-set csr esp-aes esp-sha-hmac
+mode tunnel
+crypto ipsec df-bit clear
+!
+!
+crypto ipsec profile csr-prof
+set transform-set csr
+!
+!--- IPsec Tunnel Config ---
+interface Tunnel11
+shutdown
+ip address $TunnelRouterIP1 $TunnelSubnetMask1
+tunnel source $TunnelSource1
+tunnel destination $TunnelDestinationIP1
+tunnel protection ipsec profile csr-prof
+tunnel mode ipsec ipv4
+ip mtu $mtu
+ip tcp adjust-mss 1360
+no shutdown
+!
+interface Tunnel12
+shutdown
+ip address $TunnelRouterIP2 $TunnelSubnetMask2
+tunnel source $TunnelSource2
+tunnel destination $TunnelDestinationIP2
+tunnel protection ipsec profile csr-prof
+tunnel mode ipsec ipv4
+ip mtu $mtu
+ip tcp adjust-mss 1360
+no shutdown
+!
+interface Loopback0
+ip address $OspfRouterId 255.255.255.255
+!
+!--- BGP Config ---
+router bgp $AutonomousSystemNumber
+ bgp log-neighbor-changes
+ neighbor $CSRTunnelIP1 remote-as $NeighborBgpASNOfCloudRouter1
+ neighbor $CSRTunnelIP1 timers 10 30 30
+ neighbor $CSRTunnelIP2 remote-as $NeighborBgpASNOfCloudRouter2
+ neighbor $CSRTunnelIP2 timers 10 30 30
+ !
+address-family ipv4
+  network $OspfRouterId mask 255.255.255.255
+  neighbor $CSRTunnelIP1 activate
+  neighbor $CSRTunnelIP1 as-override
+  neighbor $CSRTunnelIP1 soft-reconfiguration inbound
+  neighbor $CSRTunnelIP2 activate
+  neighbor $CSRTunnelIP2 as-override
+  neighbor $CSRTunnelIP2 soft-reconfiguration inbound
+ exit-address-family
+!

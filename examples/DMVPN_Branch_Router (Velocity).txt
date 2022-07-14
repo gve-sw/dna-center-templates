@@ -1,0 +1,62 @@
+!--- Crypto Config ---
+crypto keyring keyring-dmvpn
+  local-address $TunnelSource
+  pre-shared-key address 0.0.0.0 0.0.0.0 key cisco
+!
+crypto isakmp policy 200
+encr aes
+authentication pre-share
+group 2
+lifetime 28800
+crypto isakmp keepalive 10 10
+crypto isakmp profile dmvpn
+   keyring keyring-dmvpn
+   match identity address 0.0.0.0
+   local-address $TunnelSource
+!
+crypto ipsec security-association replay window-size 1024
+!
+crypto ipsec transform-set dmvpn esp-aes esp-sha-hmac
+mode transport
+!
+!
+crypto ipsec profile dmvpn-prof
+set transform-set dmvpn
+!
+!--- DMVPN Tunnel Config ---
+interface Loopback0
+ip address $OspfRouterId 255.255.255.255
+!
+interface Tunnel0
+ip address $TunnelIPAddress $TunnelSubnetMask
+no ip redirects
+ip mtu $mtu
+!
+ip nhrp map multicast $PublicIPCloudRouter1 !PUBLICIP OF CSR1
+ip nhrp map $ActiveCloudRouterTunnelIP $PublicIPCloudRouter1
+ip nhrp map multicast $PublicIPCloudRouter2 !PUBLICIP OF CSR2
+ip nhrp map $StandbyCloudRouterTunnelIP $PublicIPCloudRouter2
+ip nhrp network-id $NetworkId
+ip nhrp nhs $ActiveCloudRouterTunnelIP
+ip nhrp nhs $StandbyCloudRouterTunnelIP
+ip tcp adjust-mss 1360
+bfd interval 100 min_rx 100 multiplier 3
+tunnel source $TunnelSource
+tunnel mode gre multipoint
+tunnel key $TunnelKey
+tunnel protection ipsec profile dmvpn-prof
+!
+!--- BGP Config ---
+router bgp $AutonomousSystemNumber
+bgp log-neighbor-changes
+neighbor $ActiveCloudRouterTunnelIP remote-as $NeighborBgpASNOfActiveCloudRouter
+neighbor $ActiveCloudRouterTunnelIP fall-over bfd
+neighbor $StandbyCloudRouterTunnelIP remote-as $NeighborBgpASNOfStandbyCloudRouter
+neighbor $StandbyCloudRouterTunnelIP fall-over bfd
+!
+address-family ipv4
+  network $OspfRouterId mask 255.255.255.255
+  neighbor $ActiveCloudRouterTunnelIP activate
+  neighbor $StandbyCloudRouterTunnelIP activate
+exit-address-family
+!

@@ -1,0 +1,10 @@
+#foreach ($interface in ${interfaces})
+#if ($interface.interfaceType == "Physical"  && 
+    $interface.mediaType == "10/100/1000BaseTX")
+
+interface $interface.portName
+description $interface.interfaceType $interface.mediaType
+#end
+#end
+
+

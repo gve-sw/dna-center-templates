@@ -1,0 +1,8 @@
+vlan 20
+name test20
+media ethernet
+
+
+interface {{interface_variable}}
+switchport mode access
+switchport access vlan 20

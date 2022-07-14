@@ -1,0 +1,9 @@
+#macro(change_interfaces_description $interfaces)
+#foreach($interface in $interfaces)
+  int $interface
+  desc New description
+#end
+#end
+
+#set($interfaceList = ['Vlan1', 'Vlan2', 'Vlan3'])
+#change_interfaces_description($interfaceList)

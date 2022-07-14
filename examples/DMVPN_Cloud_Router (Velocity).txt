@@ -1,0 +1,7 @@
+!--- BGP Config ---
+router bgp $AutonomousSystemNumberOfCloudRouter
+address-family ipv4 vrf dmvpn
+  neighbor $BranchRouterTunnelIP remote-as $AutonomousSystemNumberOfBranchRouter
+  neighbor $BranchRouterTunnelIP fall-over bfd
+  neighbor $BranchRouterTunnelIP activate
+exit-address-family

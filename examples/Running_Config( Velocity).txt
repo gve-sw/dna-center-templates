@@ -1,0 +1,1525 @@
+hostname ME3180A-AS01
+!
+vlan 10
+ name MCME-Safety
+!
+vlan 16
+ name ME-MC-DUS-IntrusionAlarms
+!
+vlan 60
+ name MCME-CampusCard
+!
+vlan 100
+ name MCME-Students
+!
+vlan 300
+ name MCME-Staff
+!
+vlan 301
+ name MCME-CivilStaff
+!
+vlan 700
+ name MCME-Computerlabs
+!
+vlan 701
+ name ME-CivilComputerLabs
+!
+vlan 748
+ name ME-CCS-Printers
+!
+vlan 800
+ name MCME-Classrooms
+!
+vlan 900
+ name Switch-Mgmt
+!
+vlan 901 
+!
+vlan 999
+ name Native-Vlan
+!
+vlan 2072
+ name ME-VoIP-TR3180
+!
+interface FastEthernet1/0/1
+ description Spare
+ switchport access vlan 900
+ switchport mode access
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ power inline never
+ no snmp trap link-status
+!
+interface FastEthernet1/0/2
+ description Rm 3124 Jk 80
+ switchport access vlan 800
+ switchport mode access
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ no snmp trap link-status
+!
+interface FastEthernet1/0/3
+ description Rm 3124 Jk 81
+ switchport access vlan 300
+ switchport mode access
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ power inline never
+ no snmp trap link-status
+!
+interface FastEthernet1/0/4
+ description Rm 3190 Jk 119
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ power inline never
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/5
+ description DUS Emg phone Rm 2123A ---ODE
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/6
+ description Rm 3165 Jk 149
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/7
+ description Rm 3165 Jk 150
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/8
+ description Rm 3165 Jk 151
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/9
+ description Rm 3165 Jk 152
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/10
+ description Rm 3149 Jk 157
+ switchport access vlan 100
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/11
+ description Rm 3149 Jk 155
+ switchport access vlan 100
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/12
+ description Rm 3134 Jk 51
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/13
+ description Rm 3128 Jk 178
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/14
+ description Rm 3131 Jk 65
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/15
+ description Rm 3175 Jk 194
+ switchport access vlan 100
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/16
+ description Rm 3170 Jk 127
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/17
+ description Rm 3125 Jk 91
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/18
+ description Rm 3190 Jk 117
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/19
+ description Rm 3190 Jk 118
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/20
+ description Rm 3174 Jk 121
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/21
+ description Rm 3174 Jk 122
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/22
+ description Rm 3190 Jk 269
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/23
+ description Rm 3174 Jk 271
+ switchport access vlan 800
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface FastEthernet1/0/24
+ description Rm 3130 Jk 70
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ mls qos trust dscp
+ no snmp trap link-status
+ auto qos voip trust 
+!
+interface GigabitEthernet1/0/1
+ description Connection to ME Distribution Switch
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 2-4094
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ queue-set 2
+ mls qos trust dscp
+ auto qos voip trust 
+ ip dhcp snooping trust
+!
+interface GigabitEthernet1/0/2
+ description Connection to MC Distribution Switch
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 2-4094
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ queue-set 2
+ mls qos trust dscp
+ auto qos voip trust 
+ ip dhcp snooping trust
+!
+interface FastEthernet2/0/1
+ description Rm 3154 Jk 9
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/2
+ description Rm 3124 Jk 82
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/3
+ description Rm 3144 Jk 132
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/4
+ description Rm 3166 Jk 148
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/5
+ description Rm 3129 Jk 186
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/6
+ description Rm 3171 Jk 212
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/7
+ description Rm 2190 Jk 234
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/8
+ description Rm 2186 Jk 235
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/9
+ description Rm 2188 Jk 239
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/10
+ description Rm 2196 Jk 224
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/11
+ description Rm 2194 Jk 227
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/12
+ description Rm 3158 Jk 4
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/13
+ description Rm 3130 Jk 69
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/14
+ description Rm 3156 Jk 8
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/15
+ description Rm 3152 Jk 16
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/16
+ description Rm 3150 Jk 20
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/17
+ description Rm 3148 Jk 24
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/18
+ description Rm 3146 Jk 28
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/19
+ description Rm 3136 Jk 42
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/20
+ description Rm 3134 Jk 53
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/21
+ description Rm 2184 Jk 244
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/22
+ description Rm 2157 Jk 254
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/23
+ description Rm 2155 Jk 258
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet2/0/24
+ description Rm 2167 Jk 262
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/1
+ ip device tracking maximum 10
+!
+interface GigabitEthernet2/0/2
+ ip device tracking maximum 10
+!
+interface FastEthernet3/0/1
+ description Rm 3135 Jk 46
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/2
+ description Rm 3135 Jk 50
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/3
+ description Rm 3132 Jk 58
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/4
+ description Rm 3135 Jk 60
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/5
+ description Rm 3195 Jk 273
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/6
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/7
+ description Rm 3159 Jk 275
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/8
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/9
+ description Rm 2180 Jk 246
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/10
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/11
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/12
+ description AP
+ switchport access vlan 901
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/13
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/14
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/15
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/16
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/17
+ description AP
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/18
+ description DUS Intus Was Rm 2140 Jk 250
+ switchport access vlan 16
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/19
+ description Rm 3166 Jk 285
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/20
+ switchport access vlan 901
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/21
+ description PRN Konica Rm 3135 Jk 34
+ switchport access vlan 748
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/22
+ description Rm 3135 Jk 64
+ switchport access vlan 300
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/23
+ description AP with PoE Injector
+ switchport access vlan 900
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet3/0/24
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 2072
+ switchport port-security maximum 3
+ switchport port-security
+ switchport port-security aging time 1
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ ip device tracking maximum 10
+ no logging event link-status
+ no logging event power-inline-status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ priority-queue out 
+ mls qos trust cos
+ no snmp trap link-status
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/1
+ description Connection to MC Distribution Switch -to be activated
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 2-4094
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ logging event status
+ srr-queue bandwidth share 10 10 60 20
+ srr-queue bandwidth shape 10 0 0 0
+ queue-set 2
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ ip dhcp snooping trust
+!
+interface GigabitEthernet3/0/2
+ ip device tracking maximum 10
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan900
+ ip address 10.10.35.139 255.255.255.128
+ ntp broadcast client
+!

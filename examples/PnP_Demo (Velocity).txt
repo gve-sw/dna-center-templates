@@ -1,0 +1,116 @@
+
+!
+hostname $hostname
+!
+!
+!username netadmin privilege 15 password C1scoDNA!
+!enable secret C1scoDNA!
+!
+!
+no aaa new-model
+boot system switch all flash:packages.conf
+switch 1 provision c9300-24p
+switch 2 provision c9300-24p
+!
+
+ip routing
+!
+!
+license boot level network-advantage addon dna-advantage
+!
+!
+!
+redundancy
+ mode sso
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan $vlan 
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address $L0_IP $L0_Mask
+
+
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ ip address 10.85.50.145 255.255.255.192
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ description RPi wired client ** lan
+ switchport access vlan 420
+ switchport mode access
+!
+interface GigabitEthernet1/0/2
+ description Ubuntu wired client ** lan
+ switchport access vlan 420
+ switchport mode access
+
+!
+!
+interface GigabitEthernet1/0/24
+ description ******** Uplink #1 to C3650 DISTRI ******** lan
+ switchport mode trunk
+!
+!
+interface GigabitEthernet2/0/24
+ description ******** Uplink #2 to C3650 DISTRI ******** lan
+ switchport trunk allowed vlan 419,420
+ switchport mode trunk
+!
+
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan419
+ description **L2-Connection** lan
+ ip address 10.85.54.19 255.255.255.240
+!
+ip default-gateway 10.85.54.17
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface Loopback0
+ip route 0.0.0.0 0.0.0.0 10.85.54.17
+ip route vrf Mgmt-vrf 0.0.0.0 0.0.0.0 10.85.50.129
+ip ssh source-interface Loopback0
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ length 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport preferred none
+ transport input telnet ssh
+line vty 5 15
+ login local
+ transport preferred none
+ transport input telnet ssh
+!
+ntp source Loopback0
+device-tracking binding vlan 420 10.85.54.67 interface Gi1/0/1 b827.eb26.be66 tracking enable retry-interval 10 reachable-lifetime infinite
+!
+!
+end
+

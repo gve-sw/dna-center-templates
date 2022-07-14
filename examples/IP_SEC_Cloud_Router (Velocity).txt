@@ -1,0 +1,16 @@
+!--- IPsec Tunnel Config ---
+interface Tunnel12
+ip address $CloudRouterTunnelIpAddress $CloudRouterTunnelSubnetMask
+tunnel source $CloudRouterTunnelSource
+tunnel destination $BranchRouterPublicIpAddress
+tunnel protection ipsec profile csr-prof
+ip mtu $mtu
+ip tcp adjust-mss 1360
+tunnel mode ipsec ipv4
+!--- BGP Config ---
+router bgp $AutonomousSystemNumber
+neighbor $BranchRouterTunnelIP remote-as $NeighborBgpASN
+!
+address-family ipv4
+neighbor $BranchRouterTunnelIP activate
+!

@@ -1,0 +1,26 @@
+{% set REGIONALDNS1 = "172.16.1.1" %}
+{% set REGIONALDNS2 = "172.16.1.2" %}
+{% set DCDNS1 = "10.1.1.1" %}
+{% set DCDNS2 = "10.1.1.2" %}
+{% set SITECODE = SITECODE %}
+
+int te1/0/1
+
+{% if VMSITE == "Yes" %}
+{# With VM Infrastructure Onsite #}
+no desc
+
+{% else %}
+{# Without VM Infrastructure Onsite #}
+
+{% if REGIONAL == "Yes" %}
+{# Using Regional Data #}
+desc "{{__ntpserver}} {{REGIONALDNS1}} {{REGIONALDNS2}} {{DCDNS1}} {{DCDNS2}}"
+
+{% else %}
+{# Using DC Data #}
+desc "{{__ntpserver}} {{DCDNS1}} {{DCDNS2}}"
+
+{% endif %}
+
+{% endif %}

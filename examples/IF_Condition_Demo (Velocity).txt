@@ -1,0 +1,11 @@
+#set($router = 'Router')
+
+#if(10 < 6)
+  That's not correct
+#elseif(6 > 10)
+  That's also wrong
+#else
+  #if($router == 'Router')
+    Seems to be true
+  #end
+#end

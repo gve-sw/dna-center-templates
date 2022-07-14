@@ -1,0 +1,84 @@
+
+{% macro change_interfaces_description(interfaces,auth_mode) %}
+  {% for interface in interfaces %}
+int {{ interface }}
+desc {{ description }}
+    {% if auth_mode == 'closed' %}
+{{closed_mode()}}
+    {% elif auth_mode == 'monitor' %}
+{{monitor_mode()}}
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+
+{% macro monitor_mode() %}
+policy-map type control subscriber 8021X_Monitor
+   event session-started match-all
+    10 class always do-until-failure
+     10 authenticate using mab priority 20
+   event authentication-failure match-first
+    60 class always do-until-failure
+     10 terminate mab
+     20 terminate dot1x
+     30 authentication-restart 60
+   event aaa-available match-all
+   event agent-found match-all
+    10 class always do-until-failure
+     10 terminate mab
+     20 authenticate using dot1x retries 2 retry-time 0 priority 10
+   event inactivity-timeout match-all
+    10 class always do-until-failure
+     10 clear-session
+   event authentication-success match-all
+   event violation match-all
+    10 class always do-until-failure
+     10 restrict
+   event authorization-failure match-all
+{% endmacro %}
+
+{% macro closed_mode() %}
+policy-map type control subscriber 8021X_Closed
+   event session-started match-all
+    10 class always do-until-failure
+     10 authenticate using dot1x retries 2 retry-time 0 priority 10
+   event authentication-failure match-first
+    60 class always do-until-failure
+     10 terminate dot1x
+     20 terminate mab
+     30 authentication-restart 60
+   event aaa-available match-all
+   event agent-found match-all
+    10 class always do-until-failure
+     10 terminate mab
+     20 authenticate using dot1x retries 2 retry-time 0 priority 10
+   event inactivity-timeout match-all
+    10 class always do-until-failure
+     10 clear-session
+   event authentication-success match-all
+   event violation match-all
+    10 class always do-until-failure
+     10 restrict
+   event authorization-failure match-all
+{% endmacro %}
+
+template 8021X_Closed
+ dot1x pae authenticator
+ dot1x timeout supp-timeout 7
+ dot1x max-req 3
+ mab
+ access-session closed
+ access-session port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ service-policy type control subscriber 8021X_Closed
+ 
+template 8021X_Monitor
+ dot1x pae authenticator
+ dot1x timeout supp-timeout 7
+ dot1x max-req 3
+ mab
+ access-session port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ service-policy type control subscriber 8021X_Monitor

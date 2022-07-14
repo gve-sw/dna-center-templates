@@ -1,0 +1,8 @@
+{% set description = 'This is copper interface' %}
+
+{% for interface in __interface %}
+  {% if interface.portType == '10/100/1000' %}
+    int {{ interface.portName }}
+    desc {{ description }}
+  {% endif%}
+{% endfor %}
